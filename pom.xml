@@ -20,6 +20,7 @@
         <module>redis-listen</module>
     </modules>
     <properties>
+        <http-client.version>4.5.9</http-client.version>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <spring-platform.version>Cairo-SR7</spring-platform.version>
@@ -75,41 +76,16 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--ciao 工具包-->
+            <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
             <dependency>
-                <groupId>ciao.example</groupId>
-                <artifactId>ciao-common-core</artifactId>
-                <version>${ciao.version}</version>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${http-client.version}</version>
             </dependency>
             <dependency>
-                <groupId>ciao.example</groupId>
-                <artifactId>ciao-common-data</artifactId>
-                <version>${ciao.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ciao.example</groupId>
-                <artifactId>ciao-common-gateway</artifactId>
-                <version>${ciao.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ciao.example</groupId>
-                <artifactId>ciao-common-log</artifactId>
-                <version>${ciao.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ciao.example</groupId>
-                <artifactId>ciao-common-security</artifactId>
-                <version>${ciao.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ciao.example</groupId>
-                <artifactId>ciao-common-swagger</artifactId>
-                <version>${ciao.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ciao.example</groupId>
-                <artifactId>ciao-common-transaction</artifactId>
-                <version>${ciao.version}</version>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>4.5.10</version>
             </dependency>
             <!--mybatis plus extension,包含了mybatis plus core-->
             <dependency>

@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>reids-listen</artifactId>
+	<artifactId>redis-listen</artifactId>
 	<packaging>jar</packaging>
 
 

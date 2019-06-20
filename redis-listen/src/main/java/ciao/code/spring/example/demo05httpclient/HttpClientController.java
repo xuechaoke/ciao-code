@@ -43,9 +43,4 @@ public class HttpClientController {
         return new Student(name, age);
     }
 
-    @GetMapping("/student/{name}/{age}")
-    public Student getStudent2(@PathVariable("name") String name,
-                              @PathVariable("age") Integer age) {
-        return new Student(name, age);
-    }
 }

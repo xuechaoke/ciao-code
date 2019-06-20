@@ -1,4 +1,4 @@
-package ciao.code.spring.example.config;
+package ciao.code.spring.example.first.config;
 
 import ciao.code.spring.example.job.HelloJob;
 import org.quartz.*;

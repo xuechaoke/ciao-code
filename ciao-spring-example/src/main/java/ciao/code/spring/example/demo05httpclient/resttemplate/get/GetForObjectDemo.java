@@ -1,10 +1,6 @@
 package ciao.code.spring.example.demo05httpclient.resttemplate.get;
 
-import ciao.code.spring.example.demo05httpclient.resttemplate.Student;
-import cn.hutool.http.HttpRequest;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import ciao.code.spring.example.demo05httpclient.hutoolhttpclient.Pt100Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,10 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @program: ciao-code
@@ -32,15 +24,17 @@ public class GetForObjectDemo {
 
     public static void postForm() {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://reg.mail.163.com/unireg/call.do?cmd=urs.checkName";
+        String url = "http://192.168.11.231:8099/ofmcloud112/v1/api/user/login";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/x-www-form-urlencoded; charset=UTF-8"));
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("name", "xck1995xck2008");
+        map.add("username", "admin");
+        map.add("password", "admin");
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
-        System.out.println(response.getBody());
+        ResponseEntity<Pt100Result> response = restTemplate.postForEntity(url, request, Pt100Result.class);
+        Pt100Result body = response.getBody();
+        System.out.println(body);
 
     }
 

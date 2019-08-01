@@ -4,8 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.*;
-
 /**
  * @program: ciao-code
  * @author: xuechaoke
@@ -40,11 +38,11 @@ public class Test03 {
                 new Dish("season fruit", true, 120, Dish.Type.OTHER),
                 new Dish("pizza", true, 550, Dish.Type.OTHER),
                 new Dish("prawns", false, 300, Dish.Type.FISH),*/
-                new Dish("salmon", false, 450, Dish.Type.FISH),
+                new Dish("salmon1", false, 460, Dish.Type.FISH),
                 new Dish("salmon", false, 450, Dish.Type.FISH));
         menu.stream()
                 .collect(Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(dish->dish.getName()+dish.getCalories()+dish.isVegetarian()))),
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(dish->dish.getName()+dish.getCalories()+dish.getName()))),
                         ArrayList::new))
                 .forEach(System.out::println);
        /* menu.stream()

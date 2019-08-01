@@ -20,6 +20,7 @@
         <module>redis-listen</module>
         <module>spring-quartz</module>
         <module>springboot-websocket</module>
+        <module>spring-components</module>
     </modules>
     <properties>
         <http-client.version>4.5.9</http-client.version>

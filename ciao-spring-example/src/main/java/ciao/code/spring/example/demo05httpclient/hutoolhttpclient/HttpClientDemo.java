@@ -1,22 +1,12 @@
 package ciao.code.spring.example.demo05httpclient.hutoolhttpclient;
 
 import cn.hutool.http.HttpRequest;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @program: ciao-code
@@ -27,32 +17,35 @@ import java.util.List;
 @Slf4j
 public class HttpClientDemo {
     public static void main(String[] args) throws Exception {
-        get();
+        postForm();
     }
 
-    public static void postForm() {
-        String body = HttpRequest.post("http://localhost:8001/http/testForm")
-                .cookie("username=xuechaoke")
-                .header("token", "666")
-                .form("username", "ciao")
-                .form("password", "123456")
+    public static void postForm() throws IOException {
+        String body = HttpRequest.post("http://192.168.11.231:8099/ofmcloud112/v1/api/user/login")
+                .form("username", "admin")
+                .form("password", "admin")
                 .timeout(20000)
                 .execute().body();
-
-        log.info("body={}",body);
-
+        JSONObject jsonObject = JSON.parseObject(body);
+        if (jsonObject.getLong("code") == 1) {
+            String token = jsonObject.getJSONObject("data").getString("token");
+            if (token != null) {
+                FileInputStream fileInputStream = new FileInputStream("C:/Users/Administrator/Desktop/test.jpg");
+            }
+        }
     }
 
-    public static void postJson() throws IOException{
+    public static void postJson() throws IOException {
         HttpRequest post = HttpRequest.post("http://localhost:8001/http/testJson");
         String body = post.body("{\"username\": \"ciao\",\"password\": \"123456\"}")
                 .execute().body();
-        log.info("body={}",body);
+        log.info("body={}", body);
     }
 
 
     /**
      * 发送 get请求
+     *
      * @throws Exception
      */
     public static void get() throws Exception {

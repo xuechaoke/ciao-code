@@ -1,7 +1,6 @@
 
 package ciao.code.spring.example.demo04redis.redis.config;
 
-import ciao.code.spring.example.demo04redis.redis.serializer.JsonRedisSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,22 +9,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import javax.annotation.Resource;
 
 /**
  * Redis配置
  *
- * @author huangbin 694968711@qq.com
- * @since 1.0.0
+ * @author ciao 121960452@qq.com
  */
 @Configuration
 public class RedisConfig {
     @Resource
     private RedisConnectionFactory factory;
 
-    @Bean
+/*    @Bean
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -35,10 +32,10 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(factory);
 
         return redisTemplate;
-    }
+    }*/
 
-    //@Bean
-    RedisTemplate redisTemplate(RedisConnectionFactory connectionFactory) {
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
